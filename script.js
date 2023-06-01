@@ -2,15 +2,15 @@ const API_URL = 'https://api.themoviedb.org/3/discover/movie?sort_by=popularity.
 const IMG_PATH = 'https://image.tmdb.org/t/p/w1280'
 const SEARCH_API = 'https://api.themoviedb.org/3/search/movie?api_key=3fd2be6f0c70a2a598f084ddfb75487c&query="'
 
-const PROFILE_API_URL = 'https://api.github.com/users/codinginrainbows'
+const PROFILE_API = 'https://randomuser.me/api/'
 
 const main = document.getElementById('main')
-const header = document.getElementById('header')
+const user = document.getElementById('user')
 const form = document.getElementById('form')
 const search = document.getElementById('search')
 
 getMovies(API_URL)
-getProfile(PROFILE_API_URL)
+getProfile(PROFILE_API)
 
 async function getMovies(url) {
     const res = await fetch(url)
@@ -23,9 +23,7 @@ async function getProfile(url) {
     const res = await fetch(url)
     const data = await res.json()
 
-    console.log(data)
-
-    showProfileName(data)
+    showProfileName(data.results[0])
 }
 
 function showMovies(movies) {
@@ -38,7 +36,6 @@ function showMovies(movies) {
         movieEl.classList.add('movie')
 
         movieEl.innerHTML = `
-    
             <img src="${IMG_PATH + poster_path}" alt="${title}">
             <div class="movie-info">
                 <h3>${title}</h3>
@@ -56,17 +53,7 @@ function showMovies(movies) {
 } 
 
 function showProfileName(profile) {
-    header.innerHTML = ''
-    
-    const profileEl = document.createElement('div')
-    //criar classe
-    // profileEl.classList.add('profile')
-
-    profileEl.innerHTML = `
-        <h4 >${profile.name}</h4>
-    `
-
-    header.appendChild(profileEl)
+    user.innerHTML = `${profile.name.first} ${profile.name.last}`
 } 
 
 function getClassByRate(vote) {
