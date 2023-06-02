@@ -57,7 +57,11 @@ h1 {
 }
 
 .movie {
+<<<<<<< HEAD
     width: 240px;
+=======
+    width: 220px;
+>>>>>>> a7cb85e3036d4852846ac7d0177c67b82fef2e31
     margin: 1rem;
     background-color: var(--secondary-color);
     box-shadow: 0 4px 5px rgba(0, 0, 0, 0.4);
